@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotateY(0deg);
+                transform: rotateY(0deg)
+            }
+
+            100% {
+                -webkit-transform: rotateY(360deg);
+                transform: rotateY(360deg)
+            }
+        }
+
+        @-moz-keyframes spin {
+            0% {
+                -moz-transform: rotateY(0deg);
+                transform: rotateY(0deg)
+            }
+
+            100% {
+                -moz-transform: rotateY(360deg);
+                transform: rotateY(360deg)
+            }
+        }
+
+        @-ms-keyframes spin {
+            0% {
+                -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg)
+            }
+
+            100% {
+                -ms-transform: rotateY(360deg);
+                transform: rotateY(360deg)
+            }
+        }
+
+        @-o-keyframes spin {
+            0% {
+                -o-transform: rotateY(0deg);
+                transform: rotateY(0deg)
+            }
+
+            100% {
+                -o-transform: rotateY(360deg);
+                transform: rotateY(360deg)
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        body{
+            background: #000;
+        }
+
+        .stage {
+            width: 500px;
+            height: 500px;
+            margin: 250px auto;
+            position: relative;
+        }
+
+        /* .container {
+            display: block;
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transform-origin:center 50%;
+            transform: rotateX(25deg) rotateY(40deg);
+        }
+
+        .container:hover {
+            -moz-animation: spin 5s linear infinite;
+            -o-animation: spin 5s linear infinite;
+            -webkit-animation: spin 5s linear infinite;
+            animation: spin 5s linear infinite;
+        }
+
+        .side {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .side img{
+            width: 200px;
+            height: 200px;
+        }
+
+        .front {
+            -webkit-transform: translateZ(100px);
+            -moz-transform: translateZ(100px);
+            -ms-transform: translateZ(100px);
+            -o-transform: translateZ(100px);
+            transform: translateZ(100px);
+        }
+
+        .back {
+            -webkit-transform: rotateX(180deg) translateZ(100px);
+            -moz-transform: rotateX(180deg) translateZ(100px);
+            -ms-transform: rotateX(180deg) translateZ(100px);
+            -o-transform: rotateX(180deg) translateZ(100px);
+            transform: rotateX(180deg) translateZ(100px);
+        }
+
+        .left {
+            -webkit-transform: rotateY(-90deg) translateZ(100px);
+            -moz-transform: rotateY(-90deg) translateZ(100px);
+            -ms-transform: rotateY(-90deg) translateZ(100px);
+            -o-transform: rotateY(-90deg) translateZ(100px);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .right {
+            -webkit-transform: rotateY(90deg) translateZ(100px);
+            -moz-transform: rotateY(90deg) translateZ(100px);
+            -ms-transform: rotateY(90deg) translateZ(100px);
+            -o-transform: rotateY(90deg) translateZ(100px);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .top {
+            -webkit-transform: rotateX(90deg) translateZ(100px);
+            -moz-transform: rotateX(90deg) translateZ(100px);
+            -ms-transform: rotateX(90deg) translateZ(100px);
+            -o-transform: rotateX(90deg) translateZ(100px);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .bottom {
+            -webkit-transform: rotateX(-90deg) translateZ(100px);
+            -moz-transform: rotateX(-90deg) translateZ(100px);
+            -ms-transform: rotateX(-90deg) translateZ(100px);
+            -o-transform: rotateX(-90deg) translateZ(100px);
+            transform: rotateX(-90deg) translateZ(100px);
+        } */
+
+
+
+        .container{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            /* left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%); */
+            /* rotateX(17deg) rotateY(86deg) */
+    
+        }
+        .container1{
+            left: 50px;
+            top: 50px;
+        }
+        .container:hover{
+            /* animation: circle 5s linear infinite; */
+
+        }
+        .container1 .side {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        /* .container .side img{
+            width: 200px;
+            height: 200px;
+        } */
+        .container1 .front{
+            transform: translateZ(50px);
+        }
+        .container1 .back{
+            transform: rotateX(180deg) translateZ(50px);
+        }
+        .container1 .left{
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+        .container1 .right{
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        .container1 .top{
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        .container1 .bottom{
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+        .container1 img{
+            width: 100%;
+            height: 100%;
+            /* opacity: 1; */
+            background: rgba(0,0,0,1);
+        }
+
+        @keyframes circle {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes circle2 {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+
+
+        .container2{
+            width: 200px;
+            height: 200px;
+            animation: circle 5s linear infinite;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transform-origin:center 50%;    
+            transform: rotateX(16deg) rotateY(20deg);
+        }
+        .container2:hover{
+            /* animation: circle 5s linear infinite; */
+        }
+        .container2:hover .front{
+            transform: translateZ(150px);
+        }
+        .container2:hover .back{
+            transform: rotateX(180deg) translateZ(150px);
+        }
+        .container2:hover .left{
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+        .container2:hover .right{
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        .container2:hover .top{
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        .container2:hover .bottom{
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        .container2  img{
+            /* opacity: 0.6; */
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            
+        }
+        .container2 .side {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .container2 .front{
+            transform: translateZ(100px);
+        }
+        .container2 .back{
+            transform: rotateX(180deg) translateZ(100px);
+        }
+        .container2 .left{
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .container2 .right{
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .container2 .top{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .container2 .bottom{
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="stage">
+
+        <div class="container container1">
+            <div class="side front">
+                <img src="./images/1.jpg" alt="">
+            </div>
+            <div class="side back">
+                <img src="./images/2.jpg" alt="">
+            </div>
+            <div class="side left">
+                <img src="./images/3.jpg" alt="">
+            </div>
+            <div class="side right">
+                <img src="./images/4.jpg" alt="">
+            </div>
+            <div class="side top">
+                <img src="./images/5.jpg" alt="">
+            </div>
+            <div class="side bottom">
+                <img src="./images/6.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="container container2">
+            <div class="side front">
+                <img src="./images/1.jpg" alt="">
+            </div>
+            <div class="side back">
+                <img src="./images/2.jpg" alt="">
+            </div>
+            <div class="side left">
+                <img src="./images/3.jpg" alt="">
+            </div>
+            <div class="side right">
+                <img src="./images/4.jpg" alt="">
+            </div>
+            <div class="side top">
+                <img src="./images/5.jpg" alt="">
+            </div>
+            <div class="side bottom">
+                <img src="./images/6.jpg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
