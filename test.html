@@ -104,7 +104,16 @@
                 transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             }
             100% {
-                transform: rotateX(0deg) rotateY(360deg) rotateZ(30deg);
+                transform: rotateX(0deg) rotateY(360deg) rotateZ(-10deg);
+            }
+        }
+
+        @keyframes move{
+            0%{
+                -webkit-transform: rotateX(13deg) rotateY(0deg);
+            }
+            100%{
+                -webkit-transform:rotateX(13deg) rotateY(360deg);
             }
         }
 
@@ -120,9 +129,11 @@
             /* box-shadow: 0 0 15px #000 inset; */
             transform-style: preserve-3d;
             /* animation: play 6s infinite alternate; */
-            animation: circle 4s linear infinite alternate;
+            /* animation: circle 4s linear infinite alternate; */
+            animation:move 5s linear infinite;
 
-            transform: rotateX(16deg) rotateY(20deg);
+            /* transform: rotateX(0deg) rotateY(-40deg); */
+            transform:rotateX(13deg);
         }
 
 
@@ -326,8 +337,9 @@
 
         .stage2>div {
             background-size: 100% 100%;
+            opacity: 1;
             /* background: rgba(0, 0, 0, 0); */
-            background-image: url("images/6.jpg") !important;
+            /* background-image: url("images/6.jpg") !important; */
         }
 
 
@@ -359,10 +371,41 @@
             background-image: url("images/6.jpg");
             transform: rotateX(-90deg) translateZ(50px);
         }
+
+
+        .music{
+            position: fixed;
+            right:30px;
+            top:30px;
+        }
+        .music_btn{
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        .active::after{
+            content: ' ';
+            display: block;
+            height: 90%;
+            width: 2px;
+            position: absolute;
+            left: 18px;
+            top: 0;
+            background: #f00;
+            transform: rotate(-45deg);
+        }
+
+
     </style>
 </head>
 
 <body>
+
+    <div class='music '>
+        <img class='music_btn ' src="./images/audio.png" alt="">
+        <audio id='audio' class='music_source' src="http://up_mp4.t57.cn/2017/1/05m/09/298092036084.m4a" preload="auto" loop></audio>
+    </div>
+
     <div class='main'>
         <div class="stage stage1">
             <div class="face front"></div>
@@ -382,6 +425,36 @@
             <div class="face down"></div>
         </div>
     </div>
+
+    <script>
+
+        var musicBtn = document.querySelector('.music_btn')
+
+        musicBtn.onclick = toggleplay
+
+        document.addEventListener('WeixinJSBridgeReady', function() {
+            document.getElementById('audio').play()
+        })
+
+        document.addEventListener('touchstart', function() {
+            document.getElementById('audio').play()
+        })
+    
+        function toggleplay() {
+            var o = document.getElementById('audio')
+            var musicBox = document.querySelector('.music')
+            if (o.paused) {
+                o.play()
+                musicBox.className='music'
+            } else {
+                o.pause()
+                musicBox.className='music active'
+            }
+        }
+    
+    </script>
+
+
 </body>
 
 </html>
