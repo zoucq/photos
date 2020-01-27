@@ -1,361 +1,343 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="ydj">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <title>3d动画</title>
+    <style type="text/css">
         * {
             margin: 0;
             padding: 0;
         }
 
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotateY(0deg);
-                transform: rotateY(0deg)
-            }
-
-            100% {
-                -webkit-transform: rotateY(360deg);
-                transform: rotateY(360deg)
-            }
+        ul,
+        ol {
+            list-style: none;
         }
 
-        @-moz-keyframes spin {
-            0% {
-                -moz-transform: rotateY(0deg);
-                transform: rotateY(0deg)
-            }
-
-            100% {
-                -moz-transform: rotateY(360deg);
-                transform: rotateY(360deg)
-            }
+        a {
+            text-decoration: none;
         }
 
-        @-ms-keyframes spin {
-            0% {
-                -ms-transform: rotateY(0deg);
-                transform: rotateY(0deg)
-            }
-
-            100% {
-                -ms-transform: rotateY(360deg);
-                transform: rotateY(360deg)
-            }
+        img {
+            border: 0;
         }
 
-        @-o-keyframes spin {
-            0% {
-                -o-transform: rotateY(0deg);
-                transform: rotateY(0deg)
-            }
+        /*
+            stage 是舞台 
+            face 全部是演员 
 
-            100% {
-                -o-transform: rotateY(360deg);
-                transform: rotateY(360deg)
-            }
-        }
+            集合 
 
-        @keyframes spin {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg);
-            }
+            分配位置 先旋转 面向 正确的方向 
+            translateZ(100px) 取决于 该元素 面向的方面
+            
+            transform-style:preserve-3d; 让子元素 能在3d空间 占据位置
 
-            100% {
-                transform: rotateX(360deg) rotateY(360deg);
-            }
-        }
+            body perspective:800px; 视野到屏幕的距离
 
-        body{
+            perspective-origin:left top; 看的方位
+        */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 60vh;
+            perspective: 800px;
             background: #000;
         }
 
-        .stage {
-            width: 500px;
-            height: 500px;
-            margin: 250px auto;
+        .main {
+            width: 400px;
+            height: 400px;
             position: relative;
         }
 
-        /* .container {
-            display: block;
-            width: 100%;
-            height: 100%;
-            -webkit-transform-style: preserve-3d;
-            -moz-transform-style: preserve-3d;
-            -ms-transform-style: preserve-3d;
-            -o-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            transform-origin:center 50%;
-            transform: rotateX(25deg) rotateY(40deg);
+        .main:hover .stage1 {
+            /* animation: play 6s infinite alternate; */
+            animation: circle 4s linear infinite alternate;
+            z-index: 9;
         }
 
-        .container:hover {
-            -moz-animation: spin 5s linear infinite;
-            -o-animation: spin 5s linear infinite;
-            -webkit-animation: spin 5s linear infinite;
-            animation: spin 5s linear infinite;
+        .main:hover .stage2 {
+            /* animation: play 6s infinite alternate; */
+            animation: circle 4s linear infinite alternate;
         }
 
-        .side {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
-        .side img{
-            width: 200px;
-            height: 200px;
+        .main:hover .stage1 .front {
+            transform: translateZ(150px);
         }
 
-        .front {
-            -webkit-transform: translateZ(100px);
-            -moz-transform: translateZ(100px);
-            -ms-transform: translateZ(100px);
-            -o-transform: translateZ(100px);
-            transform: translateZ(100px);
+        .main:hover .stage1>div {
+            opacity: 0.9;
         }
 
-        .back {
-            -webkit-transform: rotateX(180deg) translateZ(100px);
-            -moz-transform: rotateX(180deg) translateZ(100px);
-            -ms-transform: rotateX(180deg) translateZ(100px);
-            -o-transform: rotateX(180deg) translateZ(100px);
-            transform: rotateX(180deg) translateZ(100px);
+        .main:hover .stage1 .rear {
+            background-image: url("images/zz/22.jpg");
+            transform: rotateY(180deg) translateZ(150px);
         }
 
-        .left {
-            -webkit-transform: rotateY(-90deg) translateZ(100px);
-            -moz-transform: rotateY(-90deg) translateZ(100px);
-            -ms-transform: rotateY(-90deg) translateZ(100px);
-            -o-transform: rotateY(-90deg) translateZ(100px);
-            transform: rotateY(-90deg) translateZ(100px);
+        .main:hover .stage1 .left {
+            background-image: url("images/zz/33.jpg");
+            transform: rotateY(-90deg) translateZ(150px);
         }
 
-        .right {
-            -webkit-transform: rotateY(90deg) translateZ(100px);
-            -moz-transform: rotateY(90deg) translateZ(100px);
-            -ms-transform: rotateY(90deg) translateZ(100px);
-            -o-transform: rotateY(90deg) translateZ(100px);
-            transform: rotateY(90deg) translateZ(100px);
+        .main:hover .stage1 .right {
+            background-image: url("images/zz/44.jpg");
+            transform: rotateY(90deg) translateZ(150px);
         }
 
-        .top {
-            -webkit-transform: rotateX(90deg) translateZ(100px);
-            -moz-transform: rotateX(90deg) translateZ(100px);
-            -ms-transform: rotateX(90deg) translateZ(100px);
-            -o-transform: rotateX(90deg) translateZ(100px);
-            transform: rotateX(90deg) translateZ(100px);
+        .main:hover .stage1 .up {
+            background-image: url("images/zz/55.jpg");
+            transform: rotateX(90deg) translateZ(150px);
         }
 
-        .bottom {
-            -webkit-transform: rotateX(-90deg) translateZ(100px);
-            -moz-transform: rotateX(-90deg) translateZ(100px);
-            -ms-transform: rotateX(-90deg) translateZ(100px);
-            -o-transform: rotateX(-90deg) translateZ(100px);
-            transform: rotateX(-90deg) translateZ(100px);
-        } */
-
-
-
-        .container{
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            /* left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%); */
-            /* rotateX(17deg) rotateY(86deg) */
-    
-        }
-        .container1{
-            left: 50px;
-            top: 50px;
-        }
-        .container:hover{
-            /* animation: circle 5s linear infinite; */
-
-        }
-        .container1 .side {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        /* .container .side img{
-            width: 200px;
-            height: 200px;
-        } */
-        .container1 .front{
-            transform: translateZ(50px);
-        }
-        .container1 .back{
-            transform: rotateX(180deg) translateZ(50px);
-        }
-        .container1 .left{
-            transform: rotateY(-90deg) translateZ(50px);
-        }
-        .container1 .right{
-            transform: rotateY(90deg) translateZ(50px);
-        }
-        .container1 .top{
-            transform: rotateX(90deg) translateZ(50px);
-        }
-        .container1 .bottom{
-            transform: rotateX(-90deg) translateZ(50px);
-        }
-        .container1 img{
-            width: 100%;
-            height: 100%;
-            /* opacity: 1; */
-            background: rgba(0,0,0,1);
+        .main:hover .stage1 .down {
+            background-image: url("images/zz/66.jpg");
+            transform: rotateX(-90deg) translateZ(150px);
         }
 
         @keyframes circle {
             0% {
-                transform: rotateX(0deg) rotateY(0deg);
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             }
 
             100% {
-                transform: rotateX(360deg) rotateY(360deg);
+                transform: rotateX(0deg) rotateY(360deg) rotateZ(-10deg);
             }
         }
 
-        @keyframes circle2 {
+        @keyframes move {
             0% {
-                transform: rotateX(0deg) rotateY(0deg);
+                -webkit-transform: rotateX(13deg) rotateY(0deg);
             }
 
             100% {
-                transform: rotateX(360deg) rotateY(360deg);
+                -webkit-transform: rotateX(13deg) rotateY(360deg);
             }
         }
 
 
-
-        .container2{
+        .stage {
             width: 200px;
             height: 200px;
-            animation: circle 5s linear infinite;
-            -webkit-transform-style: preserve-3d;
-            -moz-transform-style: preserve-3d;
-            -ms-transform-style: preserve-3d;
-            -o-transform-style: preserve-3d;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -100px;
+            margin-left: -100px;
+            /* box-shadow: 0 0 15px #000 inset; */
             transform-style: preserve-3d;
-            transform-origin:center 50%;    
-            transform: rotateX(16deg) rotateY(20deg);
-        }
-        .container2:hover{
-            /* animation: circle 5s linear infinite; */
-        }
-        .container2:hover .front{
-            transform: translateZ(150px);
-        }
-        .container2:hover .back{
-            transform: rotateX(180deg) translateZ(150px);
-        }
-        .container2:hover .left{
-            transform: rotateY(-90deg) translateZ(150px);
-        }
-        .container2:hover .right{
-            transform: rotateY(90deg) translateZ(150px);
-        }
-        .container2:hover .top{
-            transform: rotateX(90deg) translateZ(150px);
-        }
-        .container2:hover .bottom{
-            transform: rotateX(-90deg) translateZ(150px);
+            /* animation: play 6s infinite alternate; */
+            /* animation: circle 4s linear infinite alternate; */
+            animation: move 5s linear infinite;
+
+            /* transform: rotateX(0deg) rotateY(-40deg); */
+            transform: rotateX(13deg);
         }
 
-        .container2  img{
-            /* opacity: 0.6; */
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            
+
+        .stage1 > div {
+            opacity: 0.3;
         }
-        .container2 .side {
+
+
+        .face {
             position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
+            width: 200px;
+            height: 200px;
+            background: url("images/zz/1.jpg") no-repeat center;
+            background-size: cover;
+            font-size: 50px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
         }
-        .container2 .front{
+
+        .front {
             transform: translateZ(100px);
         }
-        .container2 .back{
-            transform: rotateX(180deg) translateZ(100px);
+
+        .rear {
+            background-image: url("images/zz/2.jpg");
+            transform: rotateY(180deg) translateZ(100px);
         }
-        .container2 .left{
+
+        .left {
+            background-image: url("images/zz/3.jpg");
             transform: rotateY(-90deg) translateZ(100px);
         }
-        .container2 .right{
+
+        .right {
+            background-image: url("images/zz/4.jpg");
             transform: rotateY(90deg) translateZ(100px);
         }
-        .container2 .top{
+
+        .up {
+            background-image: url("images/zz/5.jpg");
             transform: rotateX(90deg) translateZ(100px);
         }
-        .container2 .bottom{
+
+        .down {
+            background-image: url("images/zz/6.jpg");
             transform: rotateX(-90deg) translateZ(100px);
         }
 
+        @keyframes play {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
 
 
+
+        .stage2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .stage2 .face {
+            width: 100px;
+            height: 100px;
+            background: url("images/zz/11.jpg") no-repeat center;
+            background-size: cover;
+        }
+
+        .stage2 > div {
+            background-size: cover;
+            opacity: 1;
+            /* background: rgba(0, 0, 0, 0); */
+            /* background-image: url("images/6.jpg") !important; */
+        }
+
+
+        .stage2 .front {
+            transform: translateZ(50px);
+        }
+
+        .stage2 .rear {
+            background-image: url("images/zz/22.jpg");
+            transform: rotateY(180deg) translateZ(50px);
+        }
+
+        .stage2 .left {
+            background-image: url("images/zz/33.jpg");
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .stage2 .right {
+            background-image: url("images/zz/44.jpg");
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .stage2 .up {
+            background-image: url("images/zz/55.jpg");
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .stage2 .down {
+            background-image: url("images/zz/66.jpg");
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+
+        .music {
+            position: fixed;
+            right: 30px;
+            top: 30px;
+        }
+
+        .music_btn {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .active::after {
+            content: ' ';
+            display: block;
+            height: 90%;
+            width: 2px;
+            position: absolute;
+            left: 18px;
+            top: 0;
+            background: #f00;
+            transform: rotate(-45deg);
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="stage">
+    <!-- <div class='music '>
+        <img class='music_btn ' src="./images/audio.png" alt="">
+        <audio id='audio' class='music_source' src="http://up_mp4.t57.cn/2017/1/05m/09/298092036084.m4a" preload="auto" loop></audio>
+    </div> -->
 
-        <div class="container container1">
-            <div class="side front">
-                <img src="./images/1.jpg" alt="">
-            </div>
-            <div class="side back">
-                <img src="./images/2.jpg" alt="">
-            </div>
-            <div class="side left">
-                <img src="./images/3.jpg" alt="">
-            </div>
-            <div class="side right">
-                <img src="./images/4.jpg" alt="">
-            </div>
-            <div class="side top">
-                <img src="./images/5.jpg" alt="">
-            </div>
-            <div class="side bottom">
-                <img src="./images/6.jpg" alt="">
-            </div>
+    <div class='main'>
+        <div class="stage stage1">
+            <div class="face front"></div>
+            <div class="face rear"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="face up"></div>
+            <div class="face down"></div>
         </div>
 
-        <div class="container container2">
-            <div class="side front">
-                <img src="./images/1.jpg" alt="">
-            </div>
-            <div class="side back">
-                <img src="./images/2.jpg" alt="">
-            </div>
-            <div class="side left">
-                <img src="./images/3.jpg" alt="">
-            </div>
-            <div class="side right">
-                <img src="./images/4.jpg" alt="">
-            </div>
-            <div class="side top">
-                <img src="./images/5.jpg" alt="">
-            </div>
-            <div class="side bottom">
-                <img src="./images/6.jpg" alt="">
-            </div>
+        <div class="stage stage2">
+            <div class="face front"></div>
+            <div class="face rear"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="face up"></div>
+            <div class="face down"></div>
         </div>
-
     </div>
+
+    <script>
+
+        // var musicBtn = document.querySelector('.music_btn')
+
+        // musicBtn.onclick = toggleplay
+
+        // document.addEventListener('WeixinJSBridgeReady', function() {
+        //     document.getElementById('audio').play()
+        // })
+
+        // document.addEventListener('touchstart', function() {
+        //     document.getElementById('audio').play()
+        // })
+
+        function toggleplay() {
+            var o = document.getElementById('audio')
+            var musicBox = document.querySelector('.music')
+            if (o.paused) {
+                o.play()
+                musicBox.className = 'music'
+            } else {
+                o.pause()
+                musicBox.className = 'music active'
+            }
+        }
+
+    </script>
+
 
 </body>
 

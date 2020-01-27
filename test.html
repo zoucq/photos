@@ -7,7 +7,7 @@
     <meta name="Author" content="ydj">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
     <title>3d动画</title>
     <style type="text/css">
         * {
@@ -29,20 +29,20 @@
         }
 
         /*
-				stage 是舞台 
-				face 全部是演员 
- 
-				集合 
- 
-				分配位置 先旋转 面向 正确的方向 
-				translateZ(100px) 取决于 该元素 面向的方面
-				
-				transform-style:preserve-3d; 让子元素 能在3d空间 占据位置
- 
-				body perspective:800px; 视野到屏幕的距离
- 
-				perspective-origin:left top; 看的方位
-			*/
+            stage 是舞台 
+            face 全部是演员 
+
+            集合 
+
+            分配位置 先旋转 面向 正确的方向 
+            translateZ(100px) 取决于 该元素 面向的方面
+            
+            transform-style:preserve-3d; 让子元素 能在3d空间 占据位置
+
+            body perspective:800px; 视野到屏幕的距离
+
+            perspective-origin:left top; 看的方位
+        */
         body {
             display: flex;
             justify-content: center;
@@ -53,24 +53,27 @@
             background: #000;
         }
 
-        .main{
+        .main {
             width: 400px;
             height: 400px;
             position: relative;
         }
 
-        .main:hover .stage1{
+        .main:hover .stage1 {
             /* animation: play 6s infinite alternate; */
             animation: circle 4s linear infinite alternate;
             z-index: 9;
         }
-        .main:hover .stage2{
+
+        .main:hover .stage2 {
             /* animation: play 6s infinite alternate; */
             animation: circle 4s linear infinite alternate;
         }
+
         .main:hover .stage1 .front {
             transform: translateZ(150px);
         }
+
         .main:hover .stage1>div {
             opacity: 0.9;
         }
@@ -104,17 +107,19 @@
             0% {
                 transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             }
+
             100% {
                 transform: rotateX(0deg) rotateY(360deg) rotateZ(-10deg);
             }
         }
 
-        @keyframes move{
-            0%{
+        @keyframes move {
+            0% {
                 -webkit-transform: rotateX(13deg) rotateY(0deg);
             }
-            100%{
-                -webkit-transform:rotateX(13deg) rotateY(360deg);
+
+            100% {
+                -webkit-transform: rotateX(13deg) rotateY(360deg);
             }
         }
 
@@ -131,17 +136,15 @@
             transform-style: preserve-3d;
             /* animation: play 6s infinite alternate; */
             /* animation: circle 4s linear infinite alternate; */
-            animation:move 5s linear infinite;
+            animation: move 5s linear infinite;
 
             /* transform: rotateX(0deg) rotateY(-40deg); */
-            transform:rotateX(13deg);
+            transform: rotateX(13deg);
         }
 
 
         .stage1>div {
             background-size: 100% 100%;
-            /* background: rgba(0, 0, 0, 0.5) !important; */
-            /* background: rgba(255,255,255,0.1); */
             opacity: 0.3;
         }
 
@@ -155,7 +158,6 @@
             line-height: 200px;
             text-align: center;
             color: #fff;
-            /* box-shadow: 0 0 15px #f00 inset; */
         }
 
         .front {
@@ -187,30 +189,6 @@
             transform: rotateX(-90deg) translateZ(100px);
         }
 
-        /*
-			.stage:hover{
-				transform:rotateX(180deg) rotateY(180deg);
-			
-			}
-			
-		 	.stage:hover .front{
-				transform:translateZ(200px);
-			}
-			.stage:hover .rear{
-				transform:rotateY(180deg) translateZ(200px);
-			}
-			.stage:hover .left{
-				transform:rotateY(-90deg) translateZ(200px);
-			}
-			.stage:hover .right{
-				transform:rotateY(90deg) translateZ(200px);
-			}
-			.stage:hover .up{
-				transform:rotateX(90deg) translateZ(200px);
-			}
-			.stage:hover .down{
-				transform:rotateX(-90deg) translateZ(200px);
-			} */
         @keyframes play {
             0% {
                 transform: rotateX(0deg) rotateY(0deg);
@@ -374,17 +352,19 @@
         }
 
 
-        .music{
+        .music {
             position: fixed;
-            right:30px;
-            top:30px;
+            right: 30px;
+            top: 30px;
         }
-        .music_btn{
+
+        .music_btn {
             width: 40px;
             height: 40px;
             position: relative;
         }
-        .active::after{
+
+        .active::after {
             content: ' ';
             display: block;
             height: 90%;
@@ -395,8 +375,6 @@
             background: #f00;
             transform: rotate(-45deg);
         }
-
-
     </style>
 </head>
 
@@ -440,19 +418,19 @@
         // document.addEventListener('touchstart', function() {
         //     document.getElementById('audio').play()
         // })
-    
+
         function toggleplay() {
-            var o = document.getElementById('audio')
+            var o = document.getElementById('audio')
             var musicBox = document.querySelector('.music')
-            if (o.paused) {
-                o.play()
-                musicBox.className='music'
-            } else {
-                o.pause()
-                musicBox.className='music active'
-            }
+            if (o.paused) {
+                o.play()
+                musicBox.className = 'music'
+            } else {
+                o.pause()
+                musicBox.className = 'music active'
+            }
         }
-    
+
     </script>
 
 
