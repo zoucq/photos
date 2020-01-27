@@ -7,6 +7,7 @@
     <meta name="Author" content="ydj">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
+    <meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
     <title>3d动画</title>
     <style type="text/css">
         * {
@@ -428,17 +429,17 @@
 
     <script>
 
-        var musicBtn = document.querySelector('.music_btn')
+        // var musicBtn = document.querySelector('.music_btn')
 
-        musicBtn.onclick = toggleplay
+        // musicBtn.onclick = toggleplay
 
-        document.addEventListener('WeixinJSBridgeReady', function() {
-            document.getElementById('audio').play()
-        })
+        // document.addEventListener('WeixinJSBridgeReady', function() {
+        //     document.getElementById('audio').play()
+        // })
 
-        document.addEventListener('touchstart', function() {
-            document.getElementById('audio').play()
-        })
+        // document.addEventListener('touchstart', function() {
+        //     document.getElementById('audio').play()
+        // })
     
         function toggleplay() {
             var o = document.getElementById('audio')
